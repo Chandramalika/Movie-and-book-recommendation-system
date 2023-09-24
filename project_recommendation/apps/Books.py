@@ -3,10 +3,6 @@ import streamlit as st
 import requests
 import pandas as pd
 
-
-
-
-
 def app():
     def recommend(book):
         index = books[books['title'] == book].index[0]
@@ -18,10 +14,10 @@ def app():
             recommended_book_names.append(books.iloc[i[0]].title)
 
         return recommended_book_names
-    st.header('Book Recommender System')
-    book_dict = pickle.load(open(r'C:\Users\Rishitha Reddy\OneDrive\Desktop\multiapp\apps\books.pkl','rb'))
+    st.header('Book Recommendations')
+    book_dict = pickle.load(open(r'apps\books.pkl','rb'))
     books=pd.DataFrame(book_dict)
-    similarity = pickle.load(open(r'C:\Users\Rishitha Reddy\OneDrive\Desktop\multiapp\apps\similarity_b.pkl','rb'))
+    similarity = pickle.load(open(r'apps\similarity.pkl','rb'))
 
     book_list = books['title'].values
     selected_book = st.selectbox(
@@ -35,7 +31,5 @@ def app():
         for i in range(10):
             st.text(recommended_book_names[i])
         
-
-
 
 
